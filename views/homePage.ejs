@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>The Patch Notes</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://rss2json.com/gfapi.js"></script>
+	 <link href="https://fonts.googleapis.com/css?family=Lilita+One|Roboto+Condensed|Passion+One|Roboto+Mono|Assistant|Teko|Josefin+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/main.css" />
+</head>
+
+<body>
+	<header>
+			<div class="logo">
+				<h4><a href='/'>The Patch Notes</a></h4>
+			</div>
+		<nav>
+		</nav>
+		</header>
+	<div class='container'>
+		<br>
+		<section id=feedSection>
+			<div id='feedMenu'>
+				<div class="tab col-md-3 col-sm-12">
+					<ul role="tablist" aria-label="RssFeed tabs" class="rssFeedTabs">
+						 <% gamingFeeds.forEach(function(feeds){ %> 
+							<li>
+							<a data-toggle="tab" href="#feed"class="rssFeedButton" onclick="viewRssFeed(event,'<%= feeds._id %>'); rssFeedParse('<%= feeds.url %>', '<%= feeds._id %>', '<%= feeds.name %>');">
+								<span><%= feeds.name %></span>
+							</a>
+						</li>
+						<% }); %>
+					<!--
+						<li class='active'>
+							<a data-toggle="tab" href="#feed1"class="rssFeedButton" onclick="viewRssFeed(event,'rssFeed1'); rssFeedParse('https://mynintendonews.com/feed/', 'rssFeed1', 'feedTitle1');">
+								<span>Nintendo News</span>
+							</a>
+						</li>
+						<li>
+							<a data-toggle="tab" href="#feed2"class="rssFeedButton" onclick="viewRssFeed(event,'rssFeed2'); rssFeedParse('https://blog.us.playstation.com/feed/', 'rssFeed2', 'feedTitle2');">
+								<span>Playstation Blog</span>
+							</a>
+						</li>https://www.pcgamer.com/rss/
+						<li>
+							<a data-toggle="tab" href="#feed3"class="rssFeedButton" onclick="viewRssFeed(event,'rssFeed3'); rssFeedParse('https://www.pcgamer.com/rss/', 'rssFeed3', 'feedTitle3');">
+								<span>PC Gamer</span>
+							</a>
+						</li>
+						<li>
+							<a data-toggle="tab" href="#feed4"class="rssFeedButton" onclick="viewRssFeed(event,'rssFeed4'); rssFeedParse('https://news.xbox.com/en-us/feed/', 'rssFeed4', 'feedTitle4');">
+								<span>Xbox Wire</span>
+							</a>
+						</li>
+						<li>
+							<a data-toggle="tab" href="#feed5"class="rssFeedButton" onclick="viewRssFeed(event,'rssFeed5'); rssFeedParse('http://feeds.ign.com/ign/games-all', 'rssFeed5', 'feedTitle5');">
+								<span>IGN News</span>
+							</a>
+						</li>
+						<li>
+							<a data-toggle="tab" href="#feed6"class="rssFeedButton" onclick="viewRssFeed(event,'rssFeed6'); rssFeedParse('http://www.indieretronews.com/feeds/posts/default?alt=rss', 'rssFeed6', 'feedTitle6');">
+								<span>Indie Retro News</span>
+							</a>
+						</li>
+						-->
+					</ul>
+					<div style='width:200px; margin: 40px auto;'>
+			<form action="/" method="POST">
+			<div class='form-group'>
+			<input class='form-control' type="text" name="name" placeholder="Feed Name">
+			</div>
+			<div class='form-group'>
+ 			<input class='form-control' type="text" name="url" placeholder="Feed Url">
+			</div>
+			<div class='form-group'>
+			<button class='btn btn-primary btn-lg btn-block'>Submit</button>
+			</div>
+			</form> 
+			</div>
+				</div>
+			</div>
+			<div class="tab-content active col-md-9 col-sm-12" style="display: block;">
+				<h2>
+					Welcome to The PatchNotes!
+				</h2>
+				<h4>
+					Keep up-to-date on all your favorite gaming news and updates with our daily feeds. The perfect app for any console lover or video game enthusiast!
+				</h4>
+			</div>
+			<% gamingFeeds.forEach(function(feeds){ %> 
+			<div id="<%= feeds._id %>" class="tab-content active col-md-12" style="display: none;"> 
+				<h2 id='<%= feeds.name %>'></h2>
+			</div>
+			<% }); %>
+		
+		<!--
+
+			<div id="rssFeed1" class="tab-content active col-md-12" style="display: none;"> 
+				<h2 id='feedTitle1'></h2>
+			</div>
+			<div id="rssFeed2" class="tab-content active col-md-12" style="display: none;">
+				<h2 id='feedTitle2'></h2>
+			</div>
+			<div id="rssFeed3" class="tab-content active col-md-12" style="display: none;">
+				<h2 id='feedTitle3'></h2>
+			</div>
+			<div id="rssFeed4" class="tab-content active col-md-12" style="display: none;">
+				<h2 id='feedTitle4'></h2>
+			</div>
+			<div id="rssFeed5" class="tab-content active col-md-12" style="display: none;">
+				<h2 id='feedTitle5'></h2>
+			</div>
+			<div id="rssFeed6" class="tab-content active col-md-12" style="display: none;"> 
+				<h2 id='feedTitle6'></h2>
+			</div>
+		<div id='feed' class="col-md-9 col-sm-12">
+		
+		-->
+		</section>
+	</div>
+</body>
+<script>
+	
+//API RSS Feed Parser Call for Cleaner/More consistent rss parsing
+function rssFeedParse(rssUrl, feedID, feedTitleNum)
+	{
+		console.log(rssUrl);
+		console.log(feedID);
+		console.log(feedTitleNum);
+		$.ajax
+		({
+	url: 'https://api.rss2json.com/v1/api.json',
+	method: 'GET',
+	dataType: 'json',
+	data: {
+ 		rss_url: ""+ rssUrl + "",
+	api_key: 'v05x9lcvzvryxtaluvwcyoxehbbsdd34z4txmiy4', 
+	count: 7
+	}
+		}).done(function (response) 
+			{
+		if(response.status != 'ok'){ throw response.message; }
+		console.log('====== ' + response.feed.title + ' ======');
+			
+			var rssHeader = document.getElementById(feedTitleNum);
+			if(!(rssHeader.hasChildNodes()))
+				{
+					var feed = response.feed;
+					var headerTitle = document.createElement("h2");
+						headerTitle.innerHTML = '<h2>' + feed.title + '</h2>';
+						rssHeader.appendChild(headerTitle);
+					
+					var rssContainer = document.getElementById(feedID);
+					for(var i in response.items)
+					{
+				var item = response.items[i];
+				var div = document.createElement("div");
+							div.className='row';
+							div.innerHTML = '<h3> ' + item.title + '</h3> ' + 
+									'<h5>'+ item.pubDate +'</h5>' + 
+									'<p>' + item.description + '</p>' + 
+									'<a href= "' + item.link + '" class="button"> Read More </a>';
+				rssContainer.appendChild(div);
+					}	
+				}
+});
+	}
+</script>
+
+	
+<!-- // Pull in the rss feed URL and parses the feed into JSON then pushing it into a div -->
+<script>
+/*
+
+function pullRssFeed(rssURL, feedID) {
+google.load("feeds", "1");
+
+function initialize() {
+var feed = new google.feeds.Feed(rssURL);
+feed.load(function(result) {
+if (!result.error) {
+			// Remove the console.log once I finished understanding the parsing
+			console.log(result);
+	var rssContainer = document.getElementById(feedID);
+	for (var i = 0; i < result.feed.entries.length; i++) {
+	var entry = result.feed.entries[i];
+				console.log(entry);
+	var div = document.createElement("div");
+				div.innerHTML = '<h3> ' + entry.title + '</h3> ' + 
+								'<h5>'+ entry.publishedDate +'</h5>' + 
+								'<p>' + entry.contentSnippet + '</p>' + 
+								'<a href= "' + entry.link + '" class="button"> Read More </a>';
+	rssContainer.appendChild(div);
+	}
+}
+	});
+	}
+google.setOnLoadCallback(initialize);
+}
+
+*/
+</script>
+
+<!-- Shows/Reshow RSS Feeds and Hides/Clears all feeds from being active/visible -->
+<script>
+	function viewRssFeed(event, rssFeedNum) 
+		{
+		// Declare all variables
+			var i, tabcontent, rssFeedButton;
+		
+		// Get all elements with class="tab-content" and hide them
+			tabcontent = document.getElementsByClassName("tab-content");
+				for (i = 0; i < tabcontent.length; i++) 
+				{
+				tabcontent[i].style.display = "none";
+					if(event.currentTarget.className == "active")
+						{
+							tabcontent[i].style.display = 'block';
+						}
+				}
+	
+			// Get all elements with class="rssFeedButton" and remove the class "active"
+			rssFeedButton = document.getElementsByClassName("rssFeedButton");
+				for (i = 0; i < rssFeedButton.length; i++) 
+				{
+				rssFeedButton[i].className = rssFeedButton[i].className.replace(" active", "");
+				}
+			
+			// Show the current tab, and add an "active" class to the button that opened the tab
+			document.getElementById(rssFeedNum).style.display = "block";
+ 				event.currentTarget.className += " active";
+		} 
+</script>
+</html>
